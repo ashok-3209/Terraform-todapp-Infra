@@ -2,6 +2,10 @@ name: "Infra Pipeline"
 
 on: workflow_dispatch
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs: 
   terraform-job:
     runs-on: self-hosted
@@ -20,6 +24,8 @@ jobs:
           client-id: 54e41f4e-4c3f-4ea9-b9c2-cf89fb3743d3
           tenant-id: 0cd94da3-6ea1-4939-8630-bd60916b12c2
           subscription-id: f0ea4d91-8845-4cde-80fa-52ca5703a10a
+      
+          
           
 
       
