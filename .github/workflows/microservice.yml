@@ -25,20 +25,27 @@ jobs:
           tenant-id: 0cd94da3-6ea1-4939-8630-bd60916b12c2
           subscription-id: f0ea4d91-8845-4cde-80fa-52ca5703a10a
       
-      - name: Set PowerShell Execution Policy (self-hosted fix)
-        run: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
-        shell: pwsh
-        
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
-        working-directory: enviroment/dev
         continue-on-error: true
-
+        working-directory: environment/dev
+        
       - name: Terraform Init
         id: init
-        working-directory: enviroment/dev
-        run: terraform init -input=false
+        run: terraform init -input=false  
+        working-directory: environment/dev
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: environment/dev        
+      
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        working-directory: environment/dev    
 
       
           
