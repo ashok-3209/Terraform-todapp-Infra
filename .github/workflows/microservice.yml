@@ -28,12 +28,12 @@ jobs:
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
-        working-directory: ./temp
+        working-directory: enviroment/dev
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        working-directory: Terraform-todapp-Infra/enviroment/dev
+        working-directory: enviroment/dev
         run: terraform init -input=false
 
       
